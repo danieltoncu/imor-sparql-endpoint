@@ -36,6 +36,8 @@ namespace Imor.Database
 
                 var imorImage = this.MapImage(image.Subject.ToString(), imageProperties);
 
+                imorImage.Tags = this.tagsRepository.GetTagsForImage(imorImage.Uri);
+
                 results.Add(imorImage);
             }
 
