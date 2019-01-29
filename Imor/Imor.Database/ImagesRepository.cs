@@ -161,9 +161,7 @@ namespace Imor.Database
 
             graph.Assert(t);
 
-            var sw = new StringWriter(new StringBuilder(DatabaseInitializer.ontology));
-
-            graph.SaveToStream(sw, new CompressingTurtleWriter());
+            graph.SaveToFile(DatabaseInitializer.ontology);
         }
 
         private ImorImage MapImage(string imageUri, IEnumerable<Triple> triples)
