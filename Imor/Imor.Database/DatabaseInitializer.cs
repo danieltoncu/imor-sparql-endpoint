@@ -11,10 +11,6 @@ namespace Imor.Database
 
         public static IGraph Initialize()
         {
-            //var path= Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\"));
-
-            //path += "Imor.Database\\ImagesOntologyV1.owl";
-
             IGraph g = new Graph();
 
             g.LoadFromUri(new Uri("http://www.w3.org/1999/02/22-rdf-syntax-ns#"));
@@ -25,18 +21,7 @@ namespace Imor.Database
             }
             else
             {
-                var assembly = Assembly.GetExecutingAssembly();
-
-                var test = assembly.GetManifestResourceNames();
-
-                using (Stream stream = assembly.GetManifestResourceStream("Imor.Database.ImagesOntologyV1.owl"))
-
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    string result = reader.ReadToEnd();
-
-                    g.LoadFromString(result);
-                }
+                throw new Exception("Error: Ontology Database file could not be found at \"" + ontology + "\".");
             }
 
             return g;
