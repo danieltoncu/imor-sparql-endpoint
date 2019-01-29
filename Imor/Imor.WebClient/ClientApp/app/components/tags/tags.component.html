@@ -1,0 +1,24 @@
+﻿<h1>Tags</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!forecasts"><em>Loading...</em></p>
+
+<table class='table' *ngIf="tags">
+	<thead>
+	<tr>
+		<th>Description</th>
+		<th>Label</th>
+		<th>Uri</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr *ngFor="let tag of tags">
+		<td>{{ tag.description }}</td>
+		<td>
+			<a [routerLink]="['/imagesForTag']">{{ tag.label }}</a>
+		</td>
+		<td>{{ tag.uri }}</td>
+	</tr>
+	</tbody>
+</table>
