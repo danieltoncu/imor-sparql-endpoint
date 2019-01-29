@@ -27,7 +27,7 @@ namespace Imor.Api.Controllers
             return repo.GetImageByUri(imageUri);
         }
 
-        [HttpGet("similar")]    
+        [HttpGet("similar")]
         public IEnumerable<ImorImage> GetSimmilarImages(string imageUri)
         {
             var repo = new ImagesRepository();
@@ -45,31 +45,40 @@ namespace Imor.Api.Controllers
 
         [HttpPost]
         [Route("create")]
-        public void Post([FromBody]CreateImageCommand request)
+        public void Post([FromBody] CreateImageCommand request)
         {
             var repository = new ImagesRepository();
 
-                var tagRepository = new TagsRepository();
+            var tagRepository = new TagsRepository();
 
-                var tags = new List<ImorTag>();
+            var tags = new List<ImorTag>();
 
-                foreach (var tag in request.Tags)
+            foreach (var tagLabel in request.Tags)
+            {
+                var existingTag = tagRepository.GetTagByUri(tagLabel);
+
+                if (existingTag != null)
                 {
-                    var existingTag = tagRepository.GetTagByUri(tag);
-
-                    if (existingTag != null)
-                    {
-                        tags.Add(existingTag);
-                    }
+                    tags.Add(existingTag);
                 }
-
-                repository.InsertImage(new ImorImage
+                else
                 {
-                    Uri = request.Uri,
-                    Description = request.Description,
-                    Content = request.Content,
-                    Tags = tags
-                });
+                    tagRepository.InsertImorTag(new ImorTag()
+                    {
+                        Uri = ImorEnum.GetUri(tagLabel),
+                        Label = tagLabel,
+                        Description = "This is a label for " + tagLabel
+                    });
+                }
             }
+
+            repository.InsertImage(new ImorImage
+            {
+                Uri = request.Uri,
+                Description = request.Description,
+                Content = request.Content,
+                Tags = tags
+            });
         }
     }
+}

@@ -40,7 +40,7 @@ namespace Imor.Api.Controllers
         {
             var repo = new TagsRepository();
 
-            return repo.GetTagByUri(tagUri);
+            return repo.GetTagByUri(new Uri(tagUri));
         }
 
         [HttpGet("similar")]

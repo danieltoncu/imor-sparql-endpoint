@@ -80,18 +80,29 @@ namespace Imor.Database
 
             if (tagNode == null)
             {
-                tagNode = graph.GetUriNode(new Uri(uri));
-
-                if (tagNode == null)
-                {
-                    return null;
-                }
+                return null;
             }
 
             var properties = graph.GetTriplesWithSubject(tagNode);
 
             var tag = this.MapImorTag(uri, properties);
             
+            return tag;
+        }
+
+        public ImorTag GetTagByUri(Uri uri)
+        {
+            var tagNode = graph.GetUriNode(uri);
+
+            if (tagNode == null)
+            {
+                return null;
+            }
+
+            var properties = graph.GetTriplesWithSubject(tagNode);
+
+            var tag = this.MapImorTag(uri.ToString(), properties);
+
             return tag;
         }
 

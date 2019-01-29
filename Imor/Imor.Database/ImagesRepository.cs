@@ -115,7 +115,6 @@ namespace Imor.Database
         }
 
         public void InsertImage(ImorImage image)
-
         {
             var node = graph.CreateUriNode(new Uri(image.Uri));
 

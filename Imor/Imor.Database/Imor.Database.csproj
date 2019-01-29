@@ -9,12 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="ImagesOntologyV1.owl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="dotNetRDF" Version="2.1.0" />
   </ItemGroup>
 
