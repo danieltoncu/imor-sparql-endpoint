@@ -15,12 +15,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:52676/api/images/",
+					"raw": "http://localhost:53370/api/images/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "52676",
+					"port": "53370",
 					"path": [
 						"api",
 						"images",
@@ -40,16 +40,16 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:52676/api/tags/",
+					"raw": "http://localhost:53370/api/tags/all",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "52676",
+					"port": "53370",
 					"path": [
 						"api",
 						"tags",
-						""
+						"all"
 					]
 				}
 			},
@@ -57,11 +57,8 @@
 		},
 		{
 			"name": "GetSparqlResponse",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -75,16 +72,15 @@
 					"raw": "{\"Query\":\"prefix imor: <http://www.semanticweb.org/ImagesOntology#>\\r\\n\\r\\nselect ?s \\r\\nwhere { \\r\\n\\t?s a  imor:Image\\r\\n} \\r\\n\"}"
 				},
 				"url": {
-					"raw": "http://localhost:52676/api/sparql/",
+					"raw": "http://localhost:53370/api/sparql",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "52676",
+					"port": "53370",
 					"path": [
 						"api",
-						"sparql",
-						""
+						"sparql"
 					]
 				}
 			},
@@ -100,12 +96,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:52676/api/tags/forImageUri?imageUri=\"http://www.semanticweb.org/ImagesOntology#CatImage\"#CatImage\"",
+					"raw": "http://localhost:53370/api/tags/forImageUri?imageUri=http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23CatImage",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "52676",
+					"port": "53370",
 					"path": [
 						"api",
 						"tags",
@@ -114,10 +110,9 @@
 					"query": [
 						{
 							"key": "imageUri",
-							"value": "\"http://www.semanticweb.org/ImagesOntology#CatImage\""
+							"value": "http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23CatImage"
 						}
-					],
-					"hash": "CatImage\""
+					]
 				}
 			},
 			"response": []
@@ -136,15 +131,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"Uri\":\"http://www.semanticweb.org/ImagesOntology#TestImage6\",\"Description\":\"Test 6\",\"Content\":\"https://wallpaperbrowse.com/media/images/3848765-wallpaper-images-download.jpg\",\"Tags\":[\"DogTag\",\"PetTag\",\"TestTag\"]}"
+					"raw": "{  \r\n   \"Uri\":\"http://www.semanticweb.org/ImagesOntology#DessertHill4\",\r\n   \"Description\":\"Hills of the Judean Desert\",\r\n   \"Content\":\"https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Judea_2_by_David_Shankbone.jpg/1280px-Judea_2_by_David_Shankbone.jpg\",\r\n   \"Tags\":[  \r\n   \t\"HillsTag\"\r\n   ]\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:52676/api/images/create",
+					"raw": "http://localhost:53370/api/images/create",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "52676",
+					"port": "53370",
 					"path": [
 						"api",
 						"images",
@@ -164,7 +159,23 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:53370/api/images/byTag?tagUri=http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23MountainsTag",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53370",
+					"path": [
+						"api",
+						"images",
+						"byTag"
+					],
+					"query": [
+						{
+							"key": "tagUri",
+							"value": "http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23MountainsTag"
+						}
+					]
 				}
 			},
 			"response": []
@@ -179,12 +190,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:52676/api/tags/byUri?tagUri=http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23DogTag",
+					"raw": "http://localhost:53370/api/tags/byUri?tagUri=http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23MountainsTag",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "52676",
+					"port": "53370",
 					"path": [
 						"api",
 						"tags",
@@ -193,7 +204,7 @@
 					"query": [
 						{
 							"key": "tagUri",
-							"value": "http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23DogTag"
+							"value": "http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23MountainsTag"
 						}
 					]
 				}
@@ -203,14 +214,31 @@
 		{
 			"name": "CreateTag",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{  \r\n   \"Uri\":\"http://www.semanticweb.org/ImagesOntology#Tag1\",\r\n   \"Description\":\"Tets Tag\",\r\n   \"Label\":\"Tag1\",\r\n}"
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:53370/api/tags/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53370",
+					"path": [
+						"api",
+						"tags",
+						"create"
+					]
 				}
 			},
 			"response": []
@@ -225,7 +253,23 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:53370/api/tags/similar?tagUri=http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23MountainsTag",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53370",
+					"path": [
+						"api",
+						"tags",
+						"similar"
+					],
+					"query": [
+						{
+							"key": "tagUri",
+							"value": "http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23MountainsTag"
+						}
+					]
 				}
 			},
 			"response": []
@@ -240,7 +284,23 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:53370/api/images/byUri?imageUri=http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23CatImage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53370",
+					"path": [
+						"api",
+						"images",
+						"byUri"
+					],
+					"query": [
+						{
+							"key": "imageUri",
+							"value": "http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23CatImage"
+						}
+					]
 				}
 			},
 			"response": []
@@ -255,7 +315,23 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:53370/api/images/similar?imageUri=http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23MountKenya",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "53370",
+					"path": [
+						"api",
+						"images",
+						"similar"
+					],
+					"query": [
+						{
+							"key": "imageUri",
+							"value": "http%3A%2F%2Fwww.semanticweb.org%2FImagesOntology%23MountKenya"
+						}
+					]
 				}
 			},
 			"response": []
