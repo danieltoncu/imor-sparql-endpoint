@@ -150,7 +150,7 @@ namespace Imor.Database
             {
                 foreach (var tag in image.Tags)
                 {
-                    var tagNode = graph.GetUriNode(new Uri(ImorEnum.GetUri(tag.Uri)));
+                    var tagNode = graph.GetUriNode(new Uri(tag.Uri));
 
                     if (tagNode != null)
                     {

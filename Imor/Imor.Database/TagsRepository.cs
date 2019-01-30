@@ -75,8 +75,10 @@ namespace Imor.Database
         }
         
         public ImorTag GetTagByUri(string uri)
-        {       
-            var tagNode = graph.GetUriNode(new Uri(ImorEnum.GetUri(uri)));
+        {
+            var imorUri = new Uri(ImorEnum.GetUri(uri));
+
+            var tagNode = graph.GetUriNode(imorUri);
 
             if (tagNode == null)
             {
@@ -85,7 +87,7 @@ namespace Imor.Database
 
             var properties = graph.GetTriplesWithSubject(tagNode);
 
-            var tag = this.MapImorTag(uri, properties);
+            var tag = this.MapImorTag(imorUri.ToString(), properties);
             
             return tag;
         }
