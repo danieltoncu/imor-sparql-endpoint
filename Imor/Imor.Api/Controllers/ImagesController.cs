@@ -63,12 +63,16 @@ namespace Imor.Api.Controllers
                 }
                 else
                 {
-                    tagRepository.InsertImorTag(new ImorTag()
+                    var tag = new ImorTag()
                     {
                         Uri = ImorEnum.GetUri(tagLabel),
                         Label = tagLabel,
                         Description = "This is a label for " + tagLabel
-                    });
+                    };
+
+                    tagRepository.InsertImorTag(tag);
+
+                    tags.Add(tag);
                 }
             }
 
