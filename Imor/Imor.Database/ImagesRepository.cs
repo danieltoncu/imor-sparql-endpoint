@@ -12,7 +12,7 @@ namespace Imor.Database
 {
     public class ImagesRepository
     {
-        private readonly IGraph graph;
+        private IGraph graph;
 
         private readonly TagsRepository tagsRepository;
 
@@ -118,6 +118,8 @@ namespace Imor.Database
 
         public void InsertImage(ImorImage image)
         {
+            graph = DatabaseInitializer.Initialize();
+
             var node = graph.CreateUriNode(new Uri(image.Uri));
 
             var typeNode = graph.GetUriNode(new Uri(ImorEnum.RdfType));

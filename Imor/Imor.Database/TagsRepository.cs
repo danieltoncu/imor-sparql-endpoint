@@ -136,7 +136,15 @@ namespace Imor.Database
             
             graph.Assert(t);
 
-            graph.SaveToFile(DatabaseInitializer.ontology);
+            try
+            {
+                graph.SaveToFile(DatabaseInitializer.ontology);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public IEnumerable<ImorTag> GetSimilarTags(string uri)
